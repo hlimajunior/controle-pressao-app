@@ -1,0 +1,1 @@
+Gostaria de construir um webapp para que eu possa cadastrar as minhas controles e salvá-las numa planilha do google sheets. a aplicação seria feita usando python, flask, sqlalchemy e banco sqlite, pois a base de dados não tende a crescer muito. para o frontend, usar tailwind. A geração da interface seria interna mesmo (Server-Side Rendered UI)
