@@ -5,8 +5,7 @@ from datetime import datetime
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import os
-from sqlalchemy import text
-
+from sqlalchemy import text, desc
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -26,6 +25,79 @@ def index():
         Controle.data.desc(), Controle.hora.desc()).all()
 
     return render_template("index.html", controles=controles)
+
+
+@app.route("/api/novo", methods=["POST"])
+def api_novo_controle():
+    try:
+        payload = request.get_json(force=True)
+        # Campos obrigatórios
+        obrigatorios = ["data", "hora",
+                        "sistolica", "diastolica", "frequencia"]
+        for campo in obrigatorios:
+            if campo not in payload:
+                return jsonify({
+                    "status": "error",
+                    "message": f"Campo obrigatório ausente: {campo}"
+                }), 400
+
+        data = datetime.strptime(payload["data"], "%Y-%m-%d").date()
+        hora = datetime.strptime(payload["hora"], "%H:%M").time()
+
+        controle = Controle(
+            data=data,
+            hora=hora,
+            sistolica=int(payload["sistolica"]),
+            diastolica=int(payload["diastolica"]),
+            frequencia=int(payload["frequencia"]) if payload.get(
+                "frequencia") else None,
+            observacoes=payload.get("observacoes")
+        )
+
+        db.session.add(controle)
+        db.session.commit()
+
+        return jsonify({
+            "status": "success",
+            "id": controle.id,
+            "message": "Medição cadastrada com sucesso."
+        }), 201
+
+    except ValueError as e:
+        return jsonify({
+            "status": "error",
+            "message": f"Erro de formato: {str(e)}"
+        }), 400
+
+    except Exception as e:
+        print(e)
+        db.session.rollback()
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
+
+
+@app.route("/api/lista", methods=["GET"])
+def api_lista_controles():
+    try:
+        controles = (
+            Controle.query
+            .order_by(desc(Controle.data), desc(Controle.hora))
+            .all()
+        )
+
+        return jsonify({
+            "status": "success",
+            "total": len(controles),
+            "dados": [c.to_dict() for c in controles]
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": str(e)
+        }), 500
 
 
 @app.route("/adicionar", methods=["GET", "POST"])
@@ -217,7 +289,7 @@ def health_check():
         # Testa conexão com o banco
         db.session.execute(text("SELECT 1"))
         db_ok = True
-    except Exception as e:
+    except Exception:
         db_ok = False
 
     status_code = 200 if db_ok else 500
@@ -232,5 +304,5 @@ def health_check():
 if __name__ == "__main__":
     import os
 
-    port = int(os.environ.get("PORT", 12080))
+    port = int(os.environ.get("PORT", 1208))
     app.run(debug=True, host="0.0.0.0", port=port)
