@@ -25,7 +25,7 @@ credentials.json
 .idea/
 *.swp
 *.swo
-documentos
+
 
 # OS
 .DS_Store
