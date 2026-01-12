@@ -2,7 +2,7 @@
 
 # Script para iniciar a aplicação de controle de controles
 
-echo "Iniciando aplicação de Controle de Despesas..."
+echo "Iniciando aplicação de Controle de Pressão Arterial..."
 
 # Ativar ambiente virtual
 source venv/bin/activate

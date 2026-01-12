@@ -5,7 +5,7 @@
 # Data: 2024
 
 echo "╔════════════════════════════════════════════════════════════╗"
-echo "║     Deploy Automático - Controle de Despesas              ║"
+echo "║     Deploy Automático - Controle de Pressão Arterial       ║"
 echo "║                 Railway.app                                ║"
 echo "╚════════════════════════════════════════════════════════════╝"
 echo ""

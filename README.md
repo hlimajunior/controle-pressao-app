@@ -1,4 +1,4 @@
-# Controle de Despesas - Webapp
+# Controle de Pressão Arterial - Webapp
 
 Aplicação web desenvolvida em Flask para gerenciamento de controles pessoais com exportação para Google Sheets.
 
@@ -12,7 +12,7 @@ Aplicação web desenvolvida em Flask para gerenciamento de controles pessoais c
 ## Funcionalidades
 
 -   ✅ Cadastro de controles com descrição, valor, data e observações
--   ✅ Listagem de todas as controles cadastradas
+-   ✅ Listagem de todas os controles cadastradas
 -   ✅ Edição de controles existentes
 -   ✅ Exclusão de controles
 -   ✅ Cálculo automático do total de controles

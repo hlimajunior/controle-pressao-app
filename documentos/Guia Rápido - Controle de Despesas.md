@@ -1,4 +1,4 @@
-# Guia Rápido - Controle de Despesas
+# Guia Rápido - Controle de Pressão Arterial
 
 ## Como Iniciar a Aplicação
 

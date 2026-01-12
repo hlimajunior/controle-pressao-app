@@ -1,4 +1,4 @@
-# Guia Rápido - Controle de Despesas
+# Guia Rápido - Controle de Pressão Arterial
 
 ## Como Iniciar a Aplicação
 
@@ -27,11 +27,11 @@ A aplicação estará disponível em: **http://localhost:12080**
 2. Preencha os campos:
     - **Descrição**: Nome da controle (ex: "Almoço no restaurante")
     - **Valor**: Valor em reais (ex: 45.50)
-    - **Data**: Data da despesa
+    - **Data**: Data da medição
     - **Observações**: Informações adicionais (opcional)
 3. Clique em **"Salvar Controle"**
 
-### 2. Visualizar Despesas
+### 2. Visualizar Medições
 
 -   A página inicial mostra todas as controles cadastradas
 -   O **total de controles** é exibido no canto superior direito
@@ -70,7 +70,7 @@ A aplicação estará disponível em: **http://localhost:12080**
 
 ## Dicas
 
--   **Data padrão**: Ao adicionar uma despesa, a data atual é preenchida automaticamente
+-   **Data padrão**: Ao adicionar uma medição, a data atual é preenchida automaticamente
 -   **Formato de valor**: Use ponto ou vírgula como separador decimal (ex: 45.50 ou 45,50)
 -   **Observações**: Use este campo para adicionar detalhes como forma de pagamento, parcelas, etc.
 -   **Backup**: Exporte regularmente para Google Sheets para ter um backup dos seus dados
